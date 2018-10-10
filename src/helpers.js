@@ -1,17 +1,21 @@
-import swal from 'sweetalert';
+import swal from 'sweetalert'
+import { constants } from './constants'
 
 function generateAlert(icon, title, msg) {
-	var content = document.createElement("div");
-    content.innerHTML = `<div style="line-height: 1.6;">${msg}</div>`
-	swal({
-	    icon: icon,
-	    title: title,
-	    content: content
-  	});
+  var content = document.createElement('div')
+  content.innerHTML = `<div style="line-height: 1.6;">${msg}</div>`
+  swal({
+    icon: icon,
+    title: title,
+    content: content
+  })
 }
 
-let helpers = {
-	generateAlert
+function isTestnet(netId) {
+  return netId === constants.NETID_SOKOL || netId === constants.NETID_DAI_TEST
 }
 
-export default helpers
+module.exports = {
+  generateAlert,
+  isTestnet
+}
